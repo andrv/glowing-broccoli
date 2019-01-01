@@ -20,3 +20,5 @@ say "\$Script: $FindBin::Script";
 say '';
 say "\$RealBin:    $FindBin::RealBin";
 say "\$RealScript: $FindBin::RealScript";
+say '';
+say "user's home dir: $ENV{HOME}";
