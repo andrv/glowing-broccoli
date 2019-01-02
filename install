@@ -20,7 +20,20 @@ my $isWin;
 $isWin = 1 if exists $ENV{OS} and $ENV{OS} eq 'Windows_NT';
 
 my $home = ($isWin ? $ENV{USERPROFILE} : $ENV{HOME});
+
+# be safe
+$home = doSafePath($home);
 say $home;
+
+# be safe again
+my $distrHome = doSafePath($FindBin::Bin);
+say $distrHome;
+
+if ($isWin) {
+    ...
+}
+else {
+}
 
 #say "\$Bin:    $FindBin::Bin";
 ## $Bin:    /home/xxxxx/glowing-broccoli
@@ -38,3 +51,9 @@ say $home;
 ## on windows, the $ENV{USERPROFILE} is better:
 ##  - power shell, cmd
 ##  $VAR1 = \'C:\\Users\\XXXXX';
+
+sub doSafePath {
+    my $path = shift;
+    my @parts = File::Spec->splitpath($path);
+    return File::Spec->catfile(@parts);
+}
