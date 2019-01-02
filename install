@@ -15,10 +15,26 @@ use Data::Dumper;
 use FindBin;
 use File::Spec;
 
-say "\$Bin:    $FindBin::Bin";
-say "\$Script: $FindBin::Script";
-say '';
-say "\$RealBin:    $FindBin::RealBin";
-say "\$RealScript: $FindBin::RealScript";
-say '';
-say "user's home dir: $ENV{HOME}";
+# check for windows
+my $isWin;
+$isWin = 1 if exists $ENV{OS} and $ENV{OS} eq 'Windows_NT';
+
+my $home = ($isWin ? $ENV{USERPROFILE} : $ENV{HOME});
+say $home;
+
+#say "\$Bin:    $FindBin::Bin";
+## $Bin:    /home/xxxxx/glowing-broccoli
+#say '';
+#say "user's home dir: $ENV{HOME}";
+## user's home dir: /home/xxxxx
+##
+## on windows:
+##  - git bash
+##  user's home dir: /c/Users/XXXXX
+##  - power shell, cmd
+##  Use of uninitialized value $ENV{"HOME"} in concatenation (.) or string at install line 24.
+##  user's home dir:
+##
+## on windows, the $ENV{USERPROFILE} is better:
+##  - power shell, cmd
+##  $VAR1 = \'C:\\Users\\XXXXX';
