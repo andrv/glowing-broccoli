@@ -1,5 +1,5 @@
 " ruby files in .vim directory are from https://github.com/vim-ruby/vim-ruby
-" set t_Co=256
+set t_Co=256
 set nocompatible
 syntax on
 set ruler
