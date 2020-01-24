@@ -15,15 +15,30 @@ text_blocks = {
   question: "What is to do? (r - restore, i - install):\n",
 }
 
+commands = []
+
 if should_backup
   text_blocks[:message] += "Existing vim files will be backuped.\n"
+  commands.push("cp -r #{vim_dir} #{vim_dir_bkp}") if File.exist?(vim_dir)
+  commands.push("cp #{vimrc} #{vimrc_bkp}")            if File.exist?(vimrc)
 end
+
+commands.push("rm -r #{vim_dir}/*")
+commands.push("mkdir -p #{vim_dir}/pack/owncolors/opt")
+commands.push("cp -r ./colors #{vim_dir}/pack/owncolors/opt")
+commands.push("cp ./vimrc #{vimrc}")
 
 text_to_print = text_blocks[:message]
 
+puts text_to_print
+
 if backup_exists
-  text_to_print += text_blocks[:backup]
-  text_to_print += text_blocks[:question]
+  puts text_blocks[:backup] + text_blocks[:question]
 end
 
-puts text_to_print
+puts "\n
+Following commands will be performed:\n"
+commands.each do |com|
+  puts com + "\n"
+end
+puts "Are you sure? (y, n):\n"
