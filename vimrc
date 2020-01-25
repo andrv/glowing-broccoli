@@ -1,5 +1,39 @@
-set t_Co=256
 set nocompatible
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" Neverland Vim Colorscheme
+Plugin 'trapd00r/neverland-vim-theme'
+
+" Vim/Ruby Configuration Files
+Plugin 'vim-ruby/vim-ruby'
+
+" Edit Perl scripts in Vim/gVim. Insert code snippets, run, check, and profile the code and look up help.
+Plugin 'WolfgangMehner/perl-support'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+
+set t_Co=256
 syntax on
 set ruler
 set number

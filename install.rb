@@ -24,8 +24,7 @@ if should_backup
 end
 
 commands.push("rm -r #{vim_dir}/*")
-commands.push("mkdir -p #{vim_dir}/pack/owncolors/opt")
-commands.push("cp -r ./colors #{vim_dir}/pack/owncolors/opt")
+commands.push("git clone https://github.com/VundleVim/Vundle.vim.git #{vim_dir}/bundle/Vundle.vim")
 commands.push("cp ./vimrc #{vimrc}")
 
 text_to_print = text_blocks[:message]
