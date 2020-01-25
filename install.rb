@@ -33,6 +33,12 @@ puts text_to_print
 
 if backup_exists
   puts text_blocks[:backup] + text_blocks[:question]
+  inp = gets.chomp!
+  unless (inp == 'i')
+    commands[-2..] = []
+    commands.push("cp -r #{vim_dir_bkp}/* #{vim_dir}/")
+    commands.push("cp #{vimrc_bkp} #{vimrc}")
+  end
 end
 
 puts "\n
@@ -41,3 +47,16 @@ commands.each do |com|
   puts com + "\n"
 end
 puts "Are you sure? (y, n):\n"
+
+inp = gets.chomp!
+
+p inp
+
+if (inp == 'y')
+  commands.each do |com|
+    system(com)
+  end
+else
+  puts 'Canceled.'
+  exit
+end
