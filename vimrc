@@ -1,4 +1,3 @@
-" ruby files in .vim directory are from https://github.com/vim-ruby/vim-ruby
 set t_Co=256
 set nocompatible
 syntax on
@@ -37,5 +36,3 @@ if has("autocmd")
     " tab to 4 spaces for perl
     " autocmd FileType perl setlocal ts=4 sts=4 sw=4 et
 endif
-
-" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
